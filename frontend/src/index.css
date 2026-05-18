@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Terminal Core ── */
+  --color-void:      #000000;
+  --color-surface-1: #050505;
+  --color-surface-2: #0a0a0a;
+  --color-surface-3: #0f0f0f;
+  --color-border:    #1a2a1a;
+  --color-border-dim:#0d1a0d;
+
+  /* ── NVG Phosphor Greens ── */
+  --color-phosphor:     #00ff41;
+  --color-phosphor-dim: #00cc33;
+  --color-phosphor-lo:  #007a1f;
+  --color-phosphor-mist:#00ff4114;
+
+  /* ── Signal Colors ── */
+  --color-bull:      #00ff41;
+  --color-bull-dim:  #00cc33;
+  --color-bear:      #ff2222;
+  --color-bear-dim:  #cc1a1a;
+  --color-alert:     #ffaa00;
+  --color-congress:  #00aaff;
+  --color-insider:   #cc44ff;
+  --color-darkpool:  #00ffcc;
+  --color-neutral:   #3a4a3a;
+
+  /* ── Text ── */
+  --color-text-primary:   #d0f0d0;
+  --color-text-secondary: #6a9a6a;
+  --color-text-muted:     #2a4a2a;
+
+  /* ── Fonts ── */
+  --font-mono: "JetBrains Mono", "Courier New", ui-monospace, monospace;
+  --font-sans: "JetBrains Mono", ui-monospace, monospace;
+
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
+}
+
+/* ── Reset ── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 14px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-void);
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  overscroll-behavior: none;
+  min-height: 100dvh;
+  position: relative;
+}
+
+#root {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── CRT Scanlines overlay ── */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.15) 2px,
+    rgba(0, 0, 0, 0.15) 4px
+  );
+}
+
+/* ── Phosphor text glow ── */
+.glow {
+  text-shadow: 0 0 8px var(--color-phosphor), 0 0 16px var(--color-phosphor-lo);
+}
+.glow-alert {
+  text-shadow: 0 0 8px var(--color-alert), 0 0 16px #ff880044;
+}
+.glow-bear {
+  text-shadow: 0 0 8px var(--color-bear), 0 0 16px #ff000033;
+}
+.glow-congress {
+  text-shadow: 0 0 8px var(--color-congress), 0 0 16px #0088ff33;
+}
+.glow-insider {
+  text-shadow: 0 0 8px var(--color-insider), 0 0 16px #aa00ff33;
+}
+
+/* ── Scrollbar terminal ── */
+::-webkit-scrollbar       { width: 3px; height: 3px; }
+::-webkit-scrollbar-track { background: var(--color-void); }
+::-webkit-scrollbar-thumb { background: var(--color-phosphor-lo); }
+
+/* ── Terminal border style ── */
+.intel-border {
+  border: 1px solid var(--color-border);
+  position: relative;
+}
+.intel-border::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border: 1px solid var(--color-border-dim);
+  pointer-events: none;
+}
+
+/* ── Number flash animations ── */
+@keyframes flash-bull {
+  0%, 100% { color: var(--color-text-primary); }
+  50% { color: var(--color-bull); text-shadow: 0 0 8px var(--color-bull); }
+}
+@keyframes flash-bear {
+  0%, 100% { color: var(--color-text-primary); }
+  50% { color: var(--color-bear); text-shadow: 0 0 8px var(--color-bear); }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+@keyframes scan-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.flash-bull { animation: flash-bull 0.6s ease; }
+.flash-bear { animation: flash-bear 0.6s ease; }
+.blink      { animation: blink 1s step-end infinite; }
+.scan-in    { animation: scan-in 0.2s ease; }
+
+/* ── Safe areas ── */
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom, 16px); }
+.safe-top    { padding-top:    env(safe-area-inset-top, 0px); }
+
+/* ── Noise texture ── */
+.noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.4;
+}

@@ -1,0 +1,41 @@
+# API
+fastapi==0.115.0
+uvicorn[standard]==0.32.0
+websockets==13.1
+
+# Security
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+slowapi==0.1.9
+secure==0.3.0
+python-multipart==0.0.12
+
+# Database
+sqlalchemy[asyncio]==2.0.36
+asyncpg==0.30.0
+alembic==1.14.0
+
+# Cache / Queue
+redis==5.2.0
+celery==5.4.0
+
+# HTTP client
+httpx==0.28.0
+
+# Data parsing
+lxml==5.3.0
+xmltodict==0.14.2
+pydantic==2.10.0
+pydantic-settings==2.6.0
+
+# ML
+scikit-learn==1.5.2
+numpy==2.1.0
+pandas==2.2.3
+
+# Dev / security audit
+bandit==1.8.0
+pip-audit==2.7.3
+pytest==8.3.0
+pytest-asyncio==0.24.0
+httpx==0.28.0

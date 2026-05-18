@@ -1,0 +1,60 @@
+# ── Secrets — NEVER commit ─────────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+
+# ── Python ─────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+dist/
+build/
+*.egg-info/
+.pytest_cache/
+.bandit
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+coverage.xml
+
+# ── Databases (local dev only) ─────────────────────────────────────────────
+*.db
+*.sqlite
+*.sqlite3
+
+# ── Node / Frontend ────────────────────────────────────────────────────────
+node_modules/
+frontend/dist/
+frontend/.vite/
+.parcel-cache/
+
+# ── Docker ─────────────────────────────────────────────────────────────────
+*.override.yml
+
+# ── Build artifacts ────────────────────────────────────────────────────────
+*.tsbuildinfo
+
+# ── IDE / OS / Claude Code ─────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+.claude/
+
+# ── Security scan artifacts ────────────────────────────────────────────────
+zap-report*.html
+zap-report*.json
+trivy-results.json
+bandit-report.json
+pip-audit-report.json
