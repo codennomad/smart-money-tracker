@@ -27,7 +27,7 @@ export function InsidersPage() {
     <div>
       {/* Header */}
       <div className="px-4 pt-3 pb-2" style={{ borderBottom: '1px solid var(--color-border-dim)' }}>
-        <div className="text-[9px] tracking-[0.3em]" style={{ color: 'var(--color-text-muted)' }}>
+        <div className="text-[13px] tracking-[0.3em]" style={{ color: 'var(--color-text-muted)' }}>
           FORM 4 // INSIDER TRANSACTIONS
         </div>
       </div>
@@ -37,18 +37,18 @@ export function InsidersPage() {
         {/* Search */}
         <div className="flex items-center gap-2"
           style={{ background: 'var(--color-surface-1)', border: '1px solid var(--color-border)', padding: '6px 10px' }}>
-          <span className="text-[10px]" style={{ color: 'var(--color-phosphor-lo)' }}>TICKER:</span>
+          <span className="text-[12px]" style={{ color: 'var(--color-phosphor-lo)' }}>TICKER:</span>
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value.toUpperCase())}
             placeholder="AAPL_"
             maxLength={10}
-            className="flex-1 bg-transparent text-[11px] outline-none placeholder:opacity-30"
+            className="flex-1 bg-transparent text-[13px] outline-none placeholder:opacity-30"
             style={{ color: 'var(--color-phosphor)', fontFamily: 'var(--font-mono)', caretColor: 'var(--color-phosphor)' }}
           />
           {search && (
-            <button onClick={() => setSearch('')} className="text-[10px]"
+            <button onClick={() => setSearch('')} className="text-[12px]"
               style={{ color: 'var(--color-text-muted)' }}>✕</button>
           )}
         </div>
@@ -60,7 +60,7 @@ export function InsidersPage() {
             const color = f === 'BUY' ? 'var(--color-bull)' : f === 'SELL' ? 'var(--color-bear)' : 'var(--color-phosphor)'
             return (
               <button key={f} onClick={() => setFilter(f)}
-                className="flex-1 py-1 text-[9px] tracking-[0.2em] transition-all"
+                className="flex-1 py-1 text-[13px] tracking-[0.2em] transition-all"
                 style={{
                   color: active ? color : 'var(--color-text-muted)',
                   background: active ? `${color}10` : 'var(--color-surface-1)',
@@ -82,7 +82,7 @@ export function InsidersPage() {
         ))}
         {!loading && trades.map((t) => <InsiderCard key={t.id} trade={t} />)}
         {!loading && trades.length === 0 && (
-          <div className="py-16 text-center text-[11px] tracking-wider"
+          <div className="py-16 text-center text-[13px] tracking-wider"
             style={{ color: 'var(--color-text-muted)' }}>
             NO RECORDS FOUND
           </div>
@@ -91,7 +91,7 @@ export function InsidersPage() {
 
       {/* Count footer */}
       {!loading && trades.length > 0 && (
-        <div className="px-4 py-2 text-[9px] tracking-wider"
+        <div className="px-4 py-2 text-[13px] tracking-wider"
           style={{ color: 'var(--color-text-muted)', borderTop: '1px solid var(--color-border)' }}>
           DISPLAYING {trades.length} TRANSACTIONS
         </div>

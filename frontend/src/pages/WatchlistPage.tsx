@@ -11,9 +11,9 @@ function TerminalInput({
   return (
     <div className="flex items-center gap-2 px-3 py-2"
       style={{ background: 'var(--color-surface-1)', border: '1px solid var(--color-border)', borderLeft: '3px solid var(--color-phosphor)' }}>
-      <span className="text-[11px]" style={{ color: 'var(--color-phosphor)' }}>$</span>
-      <span className="text-[11px]" style={{ color: 'var(--color-text-muted)' }}>ADD_TICKER</span>
-      <span className="text-[11px]" style={{ color: 'var(--color-phosphor-lo)' }}> ─</span>
+      <span className="text-[13px]" style={{ color: 'var(--color-phosphor)' }}>$</span>
+      <span className="text-[13px]" style={{ color: 'var(--color-text-muted)' }}>ADD_TICKER</span>
+      <span className="text-[13px]" style={{ color: 'var(--color-phosphor-lo)' }}> ─</span>
       <input
         type="text"
         value={value}
@@ -26,7 +26,7 @@ function TerminalInput({
         autoFocus
       />
       <button onClick={onSubmit}
-        className="text-[9px] tracking-wider px-2 py-0.5 transition-all"
+        className="text-[13px] tracking-wider px-2 py-0.5 transition-all"
         style={{ background: 'var(--color-phosphor-mist)', border: '1px solid var(--color-phosphor-lo)', color: 'var(--color-phosphor)' }}>
         ADD
       </button>
@@ -63,16 +63,16 @@ function WatchlistItem({ ticker, onRemove }: { ticker: string; onRemove: () => v
         style={{ background: 'var(--color-surface-1)' }}>
         <span className="text-sm font-bold glow" style={{ color: 'var(--color-phosphor)' }}>{ticker}</span>
         {totalBuy > 0 && (
-          <span className="ml-3 text-[10px]" style={{ color: 'var(--color-bull)' }}>
+          <span className="ml-3 text-[12px]" style={{ color: 'var(--color-bull)' }}>
             ▲ {formatCurrency(totalBuy)}
           </span>
         )}
         <div className="ml-auto flex items-center gap-3">
-          <span className="text-[9px] tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
+          <span className="text-[13px] tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
             {open ? '▲ CLOSE' : '▼ EXPAND'}
           </span>
           <button onClick={(e) => { e.stopPropagation(); onRemove() }}
-            className="text-[10px] px-1.5 py-0.5 transition-all"
+            className="text-[12px] px-1.5 py-0.5 transition-all"
             style={{ color: 'var(--color-bear)', border: '1px solid var(--color-bear)30' }}>
             ✕
           </button>
@@ -83,13 +83,13 @@ function WatchlistItem({ ticker, onRemove }: { ticker: string; onRemove: () => v
       {open && (
         <div style={{ borderTop: '1px solid var(--color-border)' }}>
           {loading && (
-            <div className="py-4 text-center text-[10px] tracking-wider"
+            <div className="py-4 text-center text-[12px] tracking-wider"
               style={{ color: 'var(--color-text-muted)' }}>
               ACQUIRING INTEL...
             </div>
           )}
           {!loading && insiders.length === 0 && congress.length === 0 && (
-            <div className="py-4 text-center text-[10px]" style={{ color: 'var(--color-text-muted)' }}>
+            <div className="py-4 text-center text-[12px]" style={{ color: 'var(--color-text-muted)' }}>
               NO RECENT FLOW
             </div>
           )}
@@ -120,7 +120,7 @@ export function WatchlistPage() {
   return (
     <div>
       <div className="px-4 pt-3 pb-2" style={{ borderBottom: '1px solid var(--color-border-dim)' }}>
-        <div className="text-[9px] tracking-[0.3em]" style={{ color: 'var(--color-text-muted)' }}>
+        <div className="text-[13px] tracking-[0.3em]" style={{ color: 'var(--color-text-muted)' }}>
           WATCHLIST // TARGET TRACKING
         </div>
       </div>
@@ -131,10 +131,10 @@ export function WatchlistPage() {
 
       {watchlist.length === 0 ? (
         <div className="px-4 py-16 text-center space-y-3">
-          <div className="text-[11px] tracking-widest" style={{ color: 'var(--color-text-muted)' }}>
+          <div className="text-[13px] tracking-widest" style={{ color: 'var(--color-text-muted)' }}>
             NO TARGETS ACQUIRED
           </div>
-          <div className="text-[9px] tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
+          <div className="text-[13px] tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
             ADD A TICKER TO TRACK INSIDER FLOW
           </div>
         </div>
@@ -147,7 +147,7 @@ export function WatchlistPage() {
       )}
 
       {watchlist.length > 0 && (
-        <div className="px-4 py-2 text-[9px] tracking-wider"
+        <div className="px-4 py-2 text-[13px] tracking-wider"
           style={{ color: 'var(--color-text-muted)', borderTop: '1px solid var(--color-border)' }}>
           {watchlist.length} TARGET{watchlist.length > 1 ? 'S' : ''} TRACKED
         </div>

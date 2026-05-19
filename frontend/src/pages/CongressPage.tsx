@@ -31,7 +31,7 @@ export function CongressPage() {
   return (
     <div>
       <div className="px-4 pt-3 pb-2" style={{ borderBottom: '1px solid var(--color-border-dim)' }}>
-        <div className="text-[9px] tracking-[0.3em]" style={{ color: 'var(--color-text-muted)' }}>
+        <div className="text-[13px] tracking-[0.3em]" style={{ color: 'var(--color-text-muted)' }}>
           STOCK ACT // CONGRESSIONAL DISCLOSURES
         </div>
       </div>
@@ -40,20 +40,20 @@ export function CongressPage() {
       {!loading && (
         <div className="flex px-4 py-2 gap-4" style={{ borderBottom: '1px solid var(--color-border-dim)', background: 'var(--color-surface-1)' }}>
           <div>
-            <div className="text-[8px] tracking-wider" style={{ color: 'var(--color-text-muted)' }}>TOTAL</div>
+            <div className="text-[10px] tracking-wider" style={{ color: 'var(--color-text-muted)' }}>TOTAL</div>
             <div className="text-sm font-bold" style={{ color: 'var(--color-congress)' }}>{trades.length}</div>
           </div>
           <div>
-            <div className="text-[8px] tracking-wider" style={{ color: 'var(--color-text-muted)' }}>BUY</div>
+            <div className="text-[10px] tracking-wider" style={{ color: 'var(--color-text-muted)' }}>BUY</div>
             <div className="text-sm font-bold" style={{ color: 'var(--color-bull)' }}>{buyCount}</div>
           </div>
           <div>
-            <div className="text-[8px] tracking-wider" style={{ color: 'var(--color-text-muted)' }}>SELL</div>
+            <div className="text-[10px] tracking-wider" style={{ color: 'var(--color-text-muted)' }}>SELL</div>
             <div className="text-sm font-bold" style={{ color: 'var(--color-bear)' }}>{trades.length - buyCount}</div>
           </div>
           {lateCount > 0 && (
             <div>
-              <div className="text-[8px] tracking-wider" style={{ color: 'var(--color-alert)' }}>LATE</div>
+              <div className="text-[10px] tracking-wider" style={{ color: 'var(--color-alert)' }}>LATE</div>
               <div className="text-sm font-bold" style={{ color: 'var(--color-alert)' }}>{lateCount}</div>
             </div>
           )}
@@ -67,7 +67,7 @@ export function CongressPage() {
             const active = chamber === c
             return (
               <button key={c} onClick={() => setChamber(c)}
-                className="flex-1 py-1 text-[9px] tracking-[0.2em] transition-all"
+                className="flex-1 py-1 text-[13px] tracking-[0.2em] transition-all"
                 style={{
                   color: active ? 'var(--color-congress)' : 'var(--color-text-muted)',
                   background: active ? 'var(--color-congress)10' : 'var(--color-surface-1)',
@@ -85,7 +85,7 @@ export function CongressPage() {
             const color  = p === 'D' ? 'var(--color-congress)' : p === 'R' ? 'var(--color-bear)' : 'var(--color-phosphor)'
             return (
               <button key={p} onClick={() => setParty(p)}
-                className="flex-1 py-1 text-[9px] tracking-[0.2em] transition-all"
+                className="flex-1 py-1 text-[13px] tracking-[0.2em] transition-all"
                 style={{
                   color: active ? color : 'var(--color-text-muted)',
                   background: active ? `${color}10` : 'var(--color-surface-1)',
@@ -106,7 +106,7 @@ export function CongressPage() {
         ))}
         {!loading && trades.map((t) => <CongressCard key={t.id} trade={t} />)}
         {!loading && trades.length === 0 && (
-          <div className="py-16 text-center text-[11px] tracking-wider"
+          <div className="py-16 text-center text-[13px] tracking-wider"
             style={{ color: 'var(--color-text-muted)' }}>
             NO RECORDS FOUND
           </div>

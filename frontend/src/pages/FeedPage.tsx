@@ -12,12 +12,12 @@ function SectionHeader({ label, count }: { label: string; count?: number }) {
   return (
     <div className="flex items-center gap-3 py-2 px-4"
       style={{ borderBottom: '1px solid var(--color-border)' }}>
-      <span className="text-[9px] tracking-[0.25em]" style={{ color: 'var(--color-phosphor-lo)' }}>▶</span>
-      <span className="text-[10px] tracking-[0.2em] font-bold" style={{ color: 'var(--color-text-secondary)' }}>
+      <span className="text-[11px] tracking-[0.25em]" style={{ color: 'var(--color-phosphor-lo)' }}>▶</span>
+      <span className="text-[12px] tracking-[0.2em] font-bold" style={{ color: 'var(--color-text-secondary)' }}>
         {label}
       </span>
       {count !== undefined && (
-        <span className="text-[9px] ml-auto" style={{ color: 'var(--color-text-muted)' }}>
+        <span className="text-[11px] ml-auto" style={{ color: 'var(--color-text-muted)' }}>
           [{count} RECORDS]
         </span>
       )}
@@ -33,31 +33,31 @@ function AlertBanner({ count }: { count: number }) {
       className="mx-4 mt-4">
       <div className="px-3 py-2">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-[9px] tracking-[0.25em] font-bold glow-alert"
+          <span className="text-[11px] tracking-[0.25em] font-bold glow-alert"
             style={{ color: 'var(--color-alert)' }}>
             ⚠ ACTIVE INTELLIGENCE ALERTS
           </span>
-          <span className="text-[9px]" style={{ color: 'var(--color-text-muted)' }}>
+          <span className="text-[11px]" style={{ color: 'var(--color-text-muted)' }}>
             {count} ALERT{count > 1 ? 'S' : ''}
           </span>
         </div>
         <div className="space-y-2">
           {alerts.slice(0, 3).map((a) => (
             <div key={a.id} className="flex items-start gap-2">
-              <span className="text-[9px] mt-0.5" style={{ color: 'var(--color-alert)' }}>◆</span>
+              <span className="text-[11px] mt-0.5" style={{ color: 'var(--color-alert)' }}>◆</span>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2">
-                  <span className="text-[11px] font-bold" style={{ color: 'var(--color-alert)' }}>
+                  <span className="text-[13px] font-bold" style={{ color: 'var(--color-alert)' }}>
                     {a.ticker}
                   </span>
-                  <span className="text-[9px] tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
+                  <span className="text-[11px] tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
                     {a.alertType.replace(/_/g, ' ').toUpperCase()}
                   </span>
-                  <span className="text-[9px] ml-auto" style={{ color: 'var(--color-text-muted)' }}>
+                  <span className="text-[11px] ml-auto" style={{ color: 'var(--color-text-muted)' }}>
                     CONF:{(a.confidence * 100).toFixed(0)}%
                   </span>
                 </div>
-                <p className="text-[10px] mt-0.5" style={{ color: 'var(--color-text-secondary)' }}>
+                <p className="text-[12px] mt-0.5" style={{ color: 'var(--color-text-secondary)' }}>
                   {a.description}
                 </p>
               </div>
@@ -112,7 +112,7 @@ export function FeedPage() {
       {/* Intel brief header */}
       <div className="px-4 pt-3 pb-2"
         style={{ borderBottom: '1px solid var(--color-border-dim)' }}>
-        <div className="text-[9px] tracking-[0.3em]" style={{ color: 'var(--color-text-muted)' }}>
+        <div className="text-[11px] tracking-[0.3em]" style={{ color: 'var(--color-text-muted)' }}>
           INTEL BRIEF // REAL-TIME FLOW
         </div>
       </div>
@@ -126,7 +126,7 @@ export function FeedPage() {
 
         {error && (
           <div className="px-4 py-8 text-center">
-            <span className="text-[11px] tracking-wider" style={{ color: 'var(--color-bear)' }}>
+            <span className="text-[13px] tracking-wider" style={{ color: 'var(--color-bear)' }}>
               ✕ {error}
             </span>
           </div>
