@@ -34,6 +34,9 @@ class Settings(BaseSettings):
         "efts.senate.gov",
     ]
 
+    # SEC EDGAR contact email for User-Agent (required by SEC policy)
+    EDGAR_CONTACT_EMAIL: str = "contact@example.com"
+
     # Rate limits
     RATE_LIMIT_DEFAULT: str = "60/minute"
     RATE_LIMIT_HEAVY: str = "10/minute"

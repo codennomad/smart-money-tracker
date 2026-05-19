@@ -10,7 +10,7 @@ from .config import get_settings
 settings = get_settings()
 
 _HEADERS = {
-    "User-Agent": "SmartMoneyTracker/1.0 (contact: admin@smartmoneytracker.io)",
+    "User-Agent": f"SmartMoney-Tracker {settings.EDGAR_CONTACT_EMAIL}",
     "Accept": "application/json, application/xml, text/xml",
 }
 
