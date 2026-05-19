@@ -44,24 +44,24 @@ export function InsiderCard({ trade, onClick }: InsiderCardProps) {
       {/* Row 2: insider info */}
       <div className="mt-1.5 flex items-center justify-between">
         <div>
-          <span className="text-[11px]" style={{ color: 'var(--color-text-secondary)' }}>
+          <span className="text-[13px]" style={{ color: 'var(--color-text-secondary)' }}>
             {trade.insiderName}
           </span>
-          <span className="text-[10px] ml-2" style={{ color: 'var(--color-text-muted)' }}>
+          <span className="text-[11px] ml-2" style={{ color: 'var(--color-text-muted)' }}>
             {trade.insiderTitle}
           </span>
         </div>
-        <span className="text-[10px]" style={{ color: 'var(--color-text-muted)' }}>
+        <span className="text-[11px]" style={{ color: 'var(--color-text-muted)' }}>
           {trade.shares.toLocaleString()} SH
         </span>
       </div>
 
       {/* Row 3: meta */}
       <div className="mt-1 flex items-center justify-between">
-        <span className="text-[10px]" style={{ color: 'var(--color-text-muted)' }}>
+        <span className="text-[11px]" style={{ color: 'var(--color-text-muted)' }}>
           {trade.company}
         </span>
-        <span className="text-[10px]" style={{ color: 'var(--color-phosphor-lo)' }}>
+        <span className="text-[11px]" style={{ color: 'var(--color-phosphor-lo)' }}>
           {formatRelative(trade.filedAt)}
         </span>
       </div>
@@ -70,10 +70,10 @@ export function InsiderCard({ trade, onClick }: InsiderCardProps) {
       {isAnomaly && (
         <div className="mt-2">
           <div className="flex items-center justify-between mb-0.5">
-            <span className="text-[8px] tracking-widest" style={{ color: 'var(--color-alert)' }}>
+            <span className="text-[10px] tracking-widest" style={{ color: 'var(--color-alert)' }}>
               ANOMALY CONFIDENCE
             </span>
-            <span className="text-[8px]" style={{ color: 'var(--color-alert)' }}>
+            <span className="text-[10px]" style={{ color: 'var(--color-alert)' }}>
               {((trade.anomalyScore ?? 0) * 100).toFixed(0)}%
             </span>
           </div>
@@ -124,7 +124,7 @@ export function CongressCard({ trade, onClick }: CongressCardProps) {
           {lateFlag && <Badge variant="alert">LATE {trade.daysToDisclose}D</Badge>}
         </div>
         <div className="text-right shrink-0">
-          <div className="text-[11px] font-bold" style={{ color: valueColor }}>
+          <div className="text-[13px] font-bold" style={{ color: valueColor }}>
             {formatCurrency(trade.amountMin)}–{formatCurrency(trade.amountMax)}
           </div>
         </div>
@@ -132,23 +132,23 @@ export function CongressCard({ trade, onClick }: CongressCardProps) {
 
       <div className="mt-1.5 flex items-center justify-between">
         <div className="flex items-center gap-1.5">
-          <span className="text-[10px] font-bold" style={{ color: partyColor }}>
+          <span className="text-[11px] font-bold" style={{ color: partyColor }}>
             [{trade.party}]
           </span>
-          <span className="text-[11px]" style={{ color: 'var(--color-text-secondary)' }}>
+          <span className="text-[13px]" style={{ color: 'var(--color-text-secondary)' }}>
             {trade.member}
           </span>
         </div>
-        <span className="text-[10px] tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
+        <span className="text-[11px] tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
           {trade.chamber.toUpperCase()}
         </span>
       </div>
 
       <div className="mt-1 flex items-center justify-between">
-        <span className="text-[10px]" style={{ color: 'var(--color-text-muted)' }}>
+        <span className="text-[11px]" style={{ color: 'var(--color-text-muted)' }}>
           {trade.company}
         </span>
-        <span className="text-[10px]" style={{ color: 'var(--color-phosphor-lo)' }}>
+        <span className="text-[11px]" style={{ color: 'var(--color-phosphor-lo)' }}>
           {formatRelative(trade.transactionDate)}
         </span>
       </div>
