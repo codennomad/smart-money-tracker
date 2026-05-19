@@ -65,13 +65,13 @@ def parse_form4(xml_bytes: bytes, form_url: str = "") -> list[dict[str, Any]]:
     trades: list[dict[str, Any]] = []
 
     # Non-derivative transactions (common stock buys/sells)
-    for txn in root.get("nonDerivativeTable", {}).get("nonDerivativeTransaction") or []:
+    for txn in (root.get("nonDerivativeTable") or {}).get("nonDerivativeTransaction") or []:
         trade = _parse_non_derivative(txn, ticker, company, insider_name, insider_title, form_url)
         if trade:
             trades.append(trade)
 
     # Derivative transactions (options, warrants, convertibles)
-    for txn in root.get("derivativeTable", {}).get("derivativeTransaction") or []:
+    for txn in (root.get("derivativeTable") or {}).get("derivativeTransaction") or []:
         trade = _parse_derivative(txn, ticker, company, insider_name, insider_title, form_url)
         if trade:
             trades.append(trade)
