@@ -22,7 +22,7 @@ export function Badge({ variant = 'neutral', children, className }: BadgeProps) 
   const { color, glow, border } = VARIANT_STYLES[variant]
   return (
     <span
-      className={cn('inline-flex items-center text-[9px] font-bold tracking-[0.15em] px-1.5 py-0.5', className)}
+      className={cn('inline-flex items-center text-[11px] font-bold tracking-[0.15em] px-1.5 py-0.5', className)}
       style={{
         color,
         border: `1px solid ${border}`,
