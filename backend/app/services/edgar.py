@@ -20,7 +20,8 @@ EDGAR_BASE = "https://data.sec.gov"
 EDGAR_ARCHIVES = "https://www.sec.gov/Archives/edgar/data"
 EFTS_BASE = "https://efts.sec.gov/LATEST/search-index"
 
-_RATE_DELAY = 0.15  # seconds between requests (EDGAR asks < 10 req/s)
+_RATE_DELAY = 0.15
+EDGAR_UA = "SmartMoney-Tracker gabrielheh03@gmail.com"  # seconds between requests (EDGAR asks < 10 req/s)
 
 
 async def get_recent_form4_filings(
@@ -117,34 +118,55 @@ def _parse_form4_rss(atom_xml: str) -> list[dict[str, Any]]:
 
 async def get_form4_xml(cik: str, accession_no: str) -> bytes:
     """
-    Download the Form 4 primary XML document.
-    Accession format: 0001234567-24-000001
-    """
-    acc_clean = accession_no.replace("-", "")
-    index_url = f"{EDGAR_ARCHIVES}/{cik}/{acc_clean}/{accession_no}-index.json"
+    Download the Form 4 primary XML document from EDGAR.
 
-    await asyncio.sleep(_RATE_DELAY)
-    try:
-        resp = await fetch(index_url)
-        index = resp.json()
-        docs = index.get("documents", [])
-        xml_doc = next(
-            (d for d in docs if d.get("type") == "4" and d.get("document", "").endswith(".xml")),
-            None,
-        )
-        if xml_doc:
-            xml_url = f"{EDGAR_ARCHIVES}/{cik}/{acc_clean}/{xml_doc['document']}"
+    Strategy:
+    1. Fetch the filing index page (.htm) using the issuer CIK from RSS.
+    2. Parse the HTML to find the raw XML href (skip xslFxxx/ styled paths and .txt).
+    3. The href in the index is an absolute /Archives/... path with the correct CIK.
+    4. Fall back to the filer CIK derived from accession prefix if issuer path fails.
+    """
+    import re as _re
+    acc_clean = accession_no.replace("-", "")
+
+    async def _fetch_xml_via_index(filing_cik: str) -> bytes | None:
+        index_url = f"{EDGAR_ARCHIVES}/{filing_cik}/{acc_clean}/{accession_no}-index.htm"
+        await asyncio.sleep(_RATE_DELAY)
+        try:
+            resp = await fetch(index_url)
+            if resp.status_code != 200:
+                return None
+            html = resp.text
+            # All .xml hrefs in the index
+            all_xml = _re.findall(r'href="(/Archives/[^"]+\.xml)"', html, _re.IGNORECASE)
+            # Skip XSLT-styled viewer paths and complete-submission bundles
+            raw_xml = [
+                h for h in all_xml
+                if "/xsl" not in h.lower() and "complete" not in h.lower()
+            ]
+            primary = raw_xml[0] if raw_xml else (all_xml[0] if all_xml else None)
+            if not primary:
+                return None
+            xml_url = f"https://www.sec.gov{primary}"
             await asyncio.sleep(_RATE_DELAY)
             xml_resp = await fetch(xml_url)
             return xml_resp.content
-    except Exception:
-        pass
+        except Exception:
+            return None
 
-    # Fallback: try primary doc directly
-    fallback_url = f"{EDGAR_ARCHIVES}/{cik}/{acc_clean}/{accession_no}.xml"
-    await asyncio.sleep(_RATE_DELAY)
-    resp = await fetch(fallback_url)
-    return resp.content
+    # Try issuer CIK (from RSS — where the filing is indexed)
+    result = await _fetch_xml_via_index(cik)
+    if result:
+        return result
+
+    # Fallback: filer CIK from accession prefix (who submitted electronically)
+    filer_cik = str(int(acc_clean[:10]))
+    if filer_cik != cik:
+        result = await _fetch_xml_via_index(filer_cik)
+        if result:
+            return result
+
+    raise ValueError(f"Could not retrieve Form 4 XML for accession {accession_no}")
 
 
 async def get_recent_13f_filers(quarter_end: str, max_results: int = 50) -> list[dict[str, Any]]:
