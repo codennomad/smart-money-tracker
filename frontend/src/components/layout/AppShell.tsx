@@ -55,7 +55,7 @@ export function AppShell() {
         }}>
 
         {/* Classification banner */}
-        <div className="text-center py-0.5 text-[9px] tracking-[0.3em] font-bold"
+        <div className="text-center py-0.5 text-[11px] tracking-[0.3em] font-bold"
           style={{ background: '#0a0a00', color: 'var(--color-alert)', borderBottom: '1px solid #1a1a00' }}>
           ◆ UNCLASSIFIED // OPEN SOURCE INTELLIGENCE ◆
         </div>
@@ -63,11 +63,11 @@ export function AppShell() {
         <div className="flex items-center justify-between px-3 h-11">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <span className="text-[10px] tracking-widest glow"
+            <span className="text-[12px] tracking-widest glow"
               style={{ color: 'var(--color-phosphor)' }}>
               ▶ SMT
             </span>
-            <span className="text-[9px] tracking-wider"
+            <span className="text-[11px] tracking-wider"
               style={{ color: 'var(--color-text-muted)' }}>
               INSIDER FLOW INTEL
             </span>
@@ -76,14 +76,14 @@ export function AppShell() {
           {/* Status */}
           <div className="flex items-center gap-3">
             {alerts.length > 0 && (
-              <span className="text-[9px] tracking-wider glow-alert blink"
+              <span className="text-[11px] tracking-wider glow-alert blink"
                 style={{ color: 'var(--color-alert)' }}>
                 ⚠ {alerts.length} ALERT{alerts.length > 1 ? 'S' : ''}
               </span>
             )}
             <div className="flex items-center gap-1.5">
               <StatusDot active={wsConnected} />
-              <span className="text-[9px] tracking-wider"
+              <span className="text-[11px] tracking-wider"
                 style={{ color: wsConnected ? 'var(--color-phosphor-dim)' : 'var(--color-bear)' }}>
                 {wsConnected ? 'LIVE' : 'OFFLINE'}
               </span>
@@ -93,10 +93,10 @@ export function AppShell() {
 
         {/* Timestamp bar */}
         <div className="px-3 pb-1.5 flex justify-between items-center">
-          <span className="text-[9px]" style={{ color: 'var(--color-text-muted)' }}>
+          <span className="text-[11px]" style={{ color: 'var(--color-text-muted)' }}>
             {timeStr}
           </span>
-          <span className="text-[9px]" style={{ color: 'var(--color-text-muted)' }}>
+          <span className="text-[11px]" style={{ color: 'var(--color-text-muted)' }}>
             SRC: SEC/FINRA/HOUSE/SENATE
           </span>
         </div>

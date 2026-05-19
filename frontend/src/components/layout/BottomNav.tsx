@@ -24,7 +24,7 @@ export function BottomNav() {
         {TABS.map(({ path, code }) => {
           const active = pathname === path
           return (
-            <div key={path} className="flex-1 text-center py-0.5 text-[8px] tracking-wider"
+            <div key={path} className="flex-1 text-center py-0.5 text-[10px] tracking-wider"
               style={{ color: active ? 'var(--color-phosphor)' : 'var(--color-text-muted)' }}>
               [{code}]
             </div>
@@ -44,7 +44,7 @@ export function BottomNav() {
                 borderRight: '1px solid var(--color-border-dim)',
               }}>
               <Icon size={16} strokeWidth={active ? 2 : 1.5} />
-              <span className="text-[8px] tracking-widest"
+              <span className="text-[10px] tracking-widest"
                 style={{ textShadow: active ? '0 0 8px var(--color-phosphor)' : 'none' }}>
                 {label}
               </span>
